@@ -24,6 +24,10 @@ app.use((req, res, next) => {
     next();
 }); // GET /api/materials
 
+//  GET /index.html
+// -->  /public/index.html
+app.use("/", express.static("public"));
+
 
 // RESTful API
 // CRUD OPERATIONS
@@ -34,7 +38,6 @@ app.post("/api/material", material_controller.api_post_material);
 //api.domain.com/materials
 // READ
 app.get("/api/materials", material_controller.api_get_materials);
-
 
 // UPDATE
 //app.patch korvaa vain tietyt kentät

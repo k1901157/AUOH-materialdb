@@ -16,10 +16,7 @@ const material_data = (req) => {
     return data;
 };
 
-
-
 // CREATE
-
 const api_post_material = (req, res, next) => {
     console.log('api_post_material');
     let data = material_data(req);
@@ -38,7 +35,6 @@ const api_post_material = (req, res, next) => {
 };
 
 // READ
-
 const api_get_materials = (req, res, next) => {
     console.log('api_get_materials');
 
@@ -54,9 +50,9 @@ const api_get_materials = (req, res, next) => {
 };
 
 // UPDATE
-
 //PUT /api/material/5e877016c4bd517bd8ef178a
 const api_put_material = (req, res, next) => {
+    console.log('api_put_material');
     let id = req.params.id;
     let data = material_data(req);
 
@@ -73,27 +69,26 @@ const api_put_material = (req, res, next) => {
 };
 
 // DELETE
-
 // DELETE /api/material/5e877016c4bd517bd8ef178a
 const api_delete_material = (req, res, next) => {
     let id = req.params.id;
-    material_model.findOneAndDelete({
-        name: id
-    }).then(() => {
-        res.send();
-    }).catch(err => {
-        res.status(500);
-        res.send(err.errmsg);
-        console.log(err);
-    });
-
-    // material_model.findByIdAndRemove(id).then(() => {
+    // material_model.findOneAndDelete({
+    //     name: id
+    // }).then(() => {
     //     res.send();
     // }).catch(err => {
     //     res.status(500);
     //     res.send(err.errmsg);
     //     console.log(err);
     // });
+
+    material_model.findByIdAndRemove(id).then(() => {
+        res.send();
+    }).catch(err => {
+        res.status(500);
+        res.send(err.errmsg);
+        console.log(err);
+    });
 };
 
 
